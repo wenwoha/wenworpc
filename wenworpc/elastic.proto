@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "wenworpc/common.proto";
+option go_package = "git.wenwo.com/wenwo/wenworpc/go-wenworpc/elastic";
+option java_package = "com.wenworpc.elastic";
+package wenworpc.elastic;
+
+message GlobalSearchContent {
+  string title = 1;
+  string author = 2;
+  string author_photo = 3;
+  string img = 4;
+  uint32 views = 5;
+  uint32 like = 6;
+  uint32 answer = 7;
+  string content = 8;
+  string price  = 9;
+  string created = 10;
+}
+
+message GlobalSearchRequest{
+  string consumer_token = 1;
+  string sync_wau = 2;
+  uint32 page = 3;
+  uint32 pagesize = 4;
+}
+
+message GlobalSearchResponse{
+  Error error = 1;
+  repeated GlobalSearchContent gs_content = 2;
+}
+
+service GlobalSearch {
+  rpc getSearch(GlobalSearchRequest) returns (GlobalSearchResponse) {}
+}
+
+

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "wenworpc/common.proto";
+option go_package = "git.wenwo.com/wenwo/wenworpc/go-wenworpc/scrapy";
+option java_package = "com.wenworpc.scrapy";
+package wenworpc.scrapy;
+
+message ArticleScrapy {
+  string title = 1;
+  string author = 2;
+  string platform = 3;
+  string url = 4;
+  string abstruct = 5;
+  string content = 6;
+}
+
+message ArticleScrapyRequest{
+  string consumer_token = 1;
+  uint32 page = 2;
+  uint32 pagesize = 3;
+}
+
+message ArticleScrapyResponse{
+  Error error = 1;
+  repeated ArticleScrapy aes = 2;
+}
+
+service Scrapy {
+  rpc getArticles(ArticleScrapyRequest) returns (ArticleScrapyResponse) {}
+}

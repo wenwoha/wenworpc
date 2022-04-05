@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "wenworpc/common.proto";
+option go_package = "git.wenwo.com/wenwo/wenworpc/go-wenworpc/channel";
+option java_package = "com.wenworpc.channel";
+package wenworpc.channel;
+
+
+message ChannelPlatform {
+  string title = 1;
+  string abstruct = 2;
+  string content = 3;
+}
+
+message ChannelPtRequest{
+  string consumer_token = 1;
+  string sync_way = 2;
+  uint32 page = 3;
+  uint32 pagesize = 4;
+}
+
+message ChannelPtResponse{
+  Error error = 1;
+  repeated ChannelPlatform cpt = 2;
+}
+
+service ChannelPtm {
+  rpc getChannel(ChannelPtRequest) returns (ChannelPtResponse) {}
+}
+
+
+
